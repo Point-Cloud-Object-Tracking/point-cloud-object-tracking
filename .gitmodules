@@ -4,4 +4,4 @@
 
 [submodule "SimpleTrack"]
 	path = SimpleTrack
-	url = git@github.com:tusen-ai/SimpleTrack.git
+	url = https://github.com/tusen-ai/SimpleTrack.git
