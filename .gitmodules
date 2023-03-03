@@ -1,3 +1,7 @@
 [submodule "OpenPCDet"]
 	path = OpenPCDet
 	url = https://github.com/open-mmlab/OpenPCDet.git
+
+[submodule "SimpleTrack"]
+	path = SimpleTrack
+	url = git@github.com:tusen-ai/SimpleTrack.git
