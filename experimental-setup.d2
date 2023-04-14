@@ -1,0 +1,54 @@
+direction: right
+
+title: Experiment Setup {
+  near: top-center
+  shape: text
+  style: {
+    font-size: 28
+    bold: true
+    underline: true
+  }
+}
+
+classes: {
+  dataset: {
+    shape: circle
+    style: {
+      fill: orange
+      shadow: false
+      stroke: orange
+    }
+  }
+  od model: {
+    shape: rectangle
+  }
+  mot model: {
+    shape: rectangle
+    style: {
+      fill: "#aaeeaa"
+      # opacity: 0.2
+    }
+  }
+}
+
+PointPillar.class: od model
+PV-RCNN.class: od model
+PV-RCNN++.class: od model
+
+SimpleTrack.class: mot model
+
+KITTI.class: dataset
+nuScenes.class: dataset
+
+# PointPillar -> Preprocess -> SimpleTrack
+# PV-RCNN -> Preprocess -> SimpleTrack
+# PV-RCNN++ -> Preprocess -> SimpleTrack
+
+KITTI -> Preprocess -> PointPillar -> SimpleTrack
+KITTI -> Preprocess -> PV-RCNN -> SimpleTrack
+KITTI -> Preprocess -> PV-RCNN++ -> SimpleTrack
+
+nuScenes -> Preprocess -> PointPillar -> SimpleTrack
+nuScenes -> Preprocess -> PV-RCNN -> SimpleTrack
+nuScenes -> Preprocess -> PV-RCNN++ -> SimpleTrack
+
