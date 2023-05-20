@@ -39,3 +39,4 @@ output = {
 with open(output_file, 'w') as f:
     json.dump(output, f, indent=2)
 
+print(f"Written merged results to {os.getcwd()}/{output_file}")
