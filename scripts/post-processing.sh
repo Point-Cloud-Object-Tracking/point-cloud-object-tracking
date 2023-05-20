@@ -19,6 +19,7 @@ function cd_and_print_pwd() {
 }
 
 function check_exit_status() {
+  eval "$@"
   if [[ ! $? -eq 0 ]]; then
     echo -e "${Red}Nonzero exit status${NC}"
     exit
@@ -77,7 +78,6 @@ EPOCH=$(basename "$CKPT" .pth | tr _ "\n" | tail -2 | xargs | tr " " "_")
 if [[ ! $EPOCH =~ epoch_[0-9]+ ]]; then
   echo -e "${Red}Checkpoint filename has to be of the regex pattern '.*epoch_[0-9]+.*.pth'${NC}"
 fi
-# /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_pointpillar/default/cbgs_pointpillar/default/eval/epoch_40/val/default/final_result/data/
 
 DETECTION_OUTPUT="/home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/${CONFIG_NAME}/default/eval/${EPOCH}/val/default/final_result/data/results_nusc.json"
 echo -e "${Grey}Assuming ${DETECTION_OUTPUT} for object detection ouputs ${NC}"
@@ -86,8 +86,7 @@ echo -e "${Grey}Assuming ${DETECTION_OUTPUT} for object detection ouputs ${NC}"
 echo -e "${Cyan}[1/6] Running Detections on model ${CKPT}${NC}"
 cd_and_print_pwd ~/point-cloud-object-tracking/OpenPCDet/tools
 
-python test.py --cfg_file "./cfgs/nuscenes_models/${CONFIG_NAME}.yaml" --batch_size "$BATCH_SIZE"  --ckpt "$CKPT"
-check_exit_status
+check_exit_status python test.py --cfg_file "./cfgs/nuscenes_models/${CONFIG_NAME}.yaml" --batch_size "$BATCH_SIZE"  --ckpt "$CKPT"
 
 # [2/6] SimpleTrack Motion Model
 echo -e "${Cyan}[2/6] Running SimpleTrack motion model...${NC}"
@@ -108,14 +107,13 @@ fi
 echo -e "${Grey}Using ${MODE} mode${NC}"
 echo -e "${Grey}Using ${DET_NAME} as identifier${NC}"
 
-python detection.py \
+check_exit_status python detection.py \
     --raw_data_folder "$RAW_DATA_DIR" \
     --data_folder "$DATA_DIR" \
     --det_name "$DET_NAME" \
     --file_path "$DETECTION_OUTPUT" \
     --mode "$MODE" \
     --velo
-check_exit_status
 
 # [3/6] SimpleTrack Tracking
 echo -e "${Cyan}[3/6] Running SimpleTrack tracking...${NC}"
@@ -125,27 +123,25 @@ RESULT_FOLDER="$HOME/datasets/simpletrack/tracking/nuscenes_data/$DET_NAME/"
 echo -e "${Grey}Outputting tracking results to ${RESULT_FOLDER}${NC}"
 CONFIG_PATH=~/point-cloud-object-tracking/SimpleTrack/configs/nu_configs/giou.yaml
 
-python main_nuscenes.py \
+check_exit_status python main_nuscenes.py \
     --det_name "$DET_NAME" \
     --config_path "$CONFIG_PATH" \
     --result_folder "$RESULT_FOLDER" \
     --data_folder "$DATA_DIR"
-check_exit_status
 
 # [4/6] SimpleTrack Results
 echo -e "${Cyan}[4/6] Generating result JSONs...${NC}"
 cd_and_print_pwd ~/point-cloud-object-tracking/SimpleTrack/tools/
 
-python nuscenes_result_creation.py \
+check_exit_status python nuscenes_result_creation.py \
     --result_folder "$RESULT_FOLDER" \
     --data_folder "$DATA_DIR"
-check_exit_status
+
 
 # [5/6] Merge SimpleTrack Outputs
 echo -e "${Cyan}[5/6] Mergin SimpleTrack result JSONs...${NC}"
 cd_and_print_pwd "${RESULT_FOLDER}/debug/results"
-merge_results.py
-check_exit_status
+check_exit_status merge_results.py
 
 # [6/6] Tracking Evaluation
 echo -e "${Cyan}[6/6] Evaluating tracking results...${NC}"
@@ -169,10 +165,9 @@ echo -e "${Grey}Using $RESULTS_DATA_DIR for evaluation${NC}"
 OUTPUT_DIR="$HOME/datasets/simpletrack/tracking/$TRACKING_OUTPUT_PARENT_DIR/$DET_NAME/debug/eval"
 echo -e "${Grey}Outputting evaluations to ${OUTPUT_DIR}${NC}"
 
-python ~/.conda/envs/pcot_3.9/lib/python3.9/site-packages/nuscenes/eval/tracking/evaluate.py \
+check_exit_status python ~/.conda/envs/pcot_3.9/lib/python3.9/site-packages/nuscenes/eval/tracking/evaluate.py \
        "$RESULTS_DATA_DIR" \
        --version "$VERSION" \
        --eval_set "$SET" \
        --dataroot "$RAW_DATA_FOLDER" \
        --output_dir "$OUTPUT_DIR"
-check_exit_status
