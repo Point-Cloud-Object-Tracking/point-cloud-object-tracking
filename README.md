@@ -53,6 +53,30 @@ To create a new environment with the dependencies, run the following command:
 conda env create -n <env_name> -f environment.yaml
 ```
 
+Both `SimpleTrack` and `OpenPCDet` comes with their own dependencies. These are listed in the `requirements.txt` files in the respective folders. To install the dependencies, run the following commands:
+
+```bash
+python -m pip install -r ./SimpleTrack/requirements.txt
+```
+
+`OpenPCDet` also depends on [traveller59/spconv: Spatial Sparse Convolution Library](https://github.com/traveller59/spconv). This library can be GPU accelerated with Nvidia CUDA, but needs to be explicitly installed with 
+that option to do so. Our develop environment has CUDA 12.0 installed, so we need to install `spconv` with CUDA 12.0 support. This can be done by running the following commands:
+
+```bash
+python -m pip install spconv-cu120
+```
+ 
+If you have a different version of CUDA installed, you can find the version of `spconv` that matches your CUDA version [here](https://github.com/traveller59/spconv#install)
+
+
+```bash
+pushd OpenPCDet
+python -m pip install -r ./requirements.txt
+
+# Install this `pcdet` library and its dependent libraries by running the following command:
+python setup.py develop
+```
+
 ## Datasets
 
 The datasets used in the project are listed below. The datasets are not included in the repository and must be downloaded separately.
@@ -155,6 +179,17 @@ We extract the data from the `v1.0-trainval` and `v1.0-test` folders and place t
     │   └── RADAR_FRONT_RIGHT
     └── v1.0-trainval
 ```
+
+### Creating symbolic links to the datasets
+
+To make it easier to work with the datasets, we create symbolic links to the datasets in the `OpenPCDet` folderse. This is done by running the following commands:
+
+```bash
+ln -sf ~/datasets/kitti $PWD/OpenPCDet/data/kitti
+ln -sf ~/datasets/nuScenes $PWD/OpenPCDet/data/nuScenes
+```
+
+**NOTE** if you have placed the datasets in a different location, you will need to change the paths in the above commands accordingly.
 
 ## Pretrained models
 
