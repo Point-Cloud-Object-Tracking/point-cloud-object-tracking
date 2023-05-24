@@ -131,7 +131,7 @@ We extract the data from the `v1.0-trainval` and `v1.0-test` folders and place t
 
 ### Creating symbolic links to the datasets
 
-To make it easier to work with the datasets, we create symbolic links to the datasets in the `OpenPCDet` folderse. This is done by running the following commands:
+To make it easier to work with the datasets, we create symbolic links to the datasets in the `OpenPCDet` folders. This is done by running the following commands:
 
 ```bash
 ln -sf ~/datasets/kitti $PWD/OpenPCDet/data/kitti
