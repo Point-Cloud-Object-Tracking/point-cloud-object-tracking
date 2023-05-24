@@ -1,0 +1,14 @@
+name: pcot_3.9
+channels:
+  - defaults
+  - conda-forge
+dependencies:
+  - python==3.9
+  - torchaudio
+  - torchvision
+  - pytorch
+  - pytorch-cuda=11.8
+  - tensorboardx
+  - sharedarray
+  - cudatoolkit
+prefix: /home/cv08f23/.conda/envs/pcot_3.9
