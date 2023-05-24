@@ -115,68 +115,17 @@ We extract the data from the `v1.0-trainval` and `v1.0-test` folders and place t
 
 ```
 ~/datasets/nuScenes/
-├── detection
-│   └── cp
-│       └── dets
 ├── v1.0-test
 │   ├── gt_database_10sweeps_withvelo
 │   ├── maps
 │   ├── samples
-│   │   ├── CAM_BACK
-│   │   ├── CAM_BACK_LEFT
-│   │   ├── CAM_BACK_RIGHT
-│   │   ├── CAM_FRONT
-│   │   ├── CAM_FRONT_LEFT
-│   │   ├── CAM_FRONT_RIGHT
-│   │   ├── LIDAR_TOP
-│   │   ├── RADAR_BACK_LEFT
-│   │   ├── RADAR_BACK_RIGHT
-│   │   ├── RADAR_FRONT
-│   │   ├── RADAR_FRONT_LEFT
-│   │   └── RADAR_FRONT_RIGHT
 │   ├── sweeps
-│   │   ├── CAM_BACK
-│   │   ├── CAM_BACK_LEFT
-│   │   ├── CAM_BACK_RIGHT
-│   │   ├── CAM_FRONT
-│   │   ├── CAM_FRONT_LEFT
-│   │   ├── CAM_FRONT_RIGHT
-│   │   ├── LIDAR_TOP
-│   │   ├── RADAR_BACK_LEFT
-│   │   ├── RADAR_BACK_RIGHT
-│   │   ├── RADAR_FRONT
-│   │   ├── RADAR_FRONT_LEFT
-│   │   └── RADAR_FRONT_RIGHT
 │   └── v1.0-test
 └── v1.0-trainval
     ├── gt_database_10sweeps_withvelo
     ├── maps
     ├── samples
-    │   ├── CAM_BACK
-    │   ├── CAM_BACK_LEFT
-    │   ├── CAM_BACK_RIGHT
-    │   ├── CAM_FRONT
-    │   ├── CAM_FRONT_LEFT
-    │   ├── CAM_FRONT_RIGHT
-    │   ├── LIDAR_TOP
-    │   ├── RADAR_BACK_LEFT
-    │   ├── RADAR_BACK_RIGHT
-    │   ├── RADAR_FRONT
-    │   ├── RADAR_FRONT_LEFT
-    │   └── RADAR_FRONT_RIGHT
     ├── sweeps
-    │   ├── CAM_BACK
-    │   ├── CAM_BACK_LEFT
-    │   ├── CAM_BACK_RIGHT
-    │   ├── CAM_FRONT
-    │   ├── CAM_FRONT_LEFT
-    │   ├── CAM_FRONT_RIGHT
-    │   ├── LIDAR_TOP
-    │   ├── RADAR_BACK_LEFT
-    │   ├── RADAR_BACK_RIGHT
-    │   ├── RADAR_FRONT
-    │   ├── RADAR_FRONT_LEFT
-    │   └── RADAR_FRONT_RIGHT
     └── v1.0-trainval
 ```
 
@@ -193,10 +142,10 @@ ln -sf ~/datasets/nuScenes $PWD/OpenPCDet/data/nuScenes
 
 ## Pretrained models
 
-`OpenPCDet` provides pretrained models for the nuScenes dataset [here](https://github.com/open-mmlab/OpenPCDet#nuscenes-3d-object-detection-baselines) and KITTI [here](https://github.com/open-mmlab/OpenPCDet#kitti-3d-object-detection-baselines)
+`OpenPCDet` provides pretrained models for the nuScenes dataset [here](https://github.com/open-mmlab/OpenPCDet#nuscenes-3d-object-detection-baselines) and KITTI [here](https://github.com/open-mmlab/OpenPCDet#kitti-3d-object-detection-baselines).
 
 
-## How to train a model from scratch
+## How to train a model from
 
 Here is how to train the pointpillar model on the nuScenes dataset.
 
