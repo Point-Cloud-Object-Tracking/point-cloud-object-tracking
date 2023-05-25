@@ -178,5 +178,5 @@ The different metrics are saved in the `results` folder, and will also be printe
 If you experience any issues with paths not being found, you can open the `post_processing.sh` script and change the paths, to match the directory where you have put your copy of the datasets.
 
 ## Research & Testing
-The files `*.ipynb* have been for testing purposes, and the result is described above.
+The files `*.ipynb*` have been for testing purposes, and the result is described above.
 The `slurm*.sh` files were used to execute training and scripts on slurm node 5.
