@@ -43,15 +43,15 @@
 
 # CenterPoint
 # post-processing.sh --ckpt /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_voxel_res3d_centerpoint_custom/default/ckpt/checkpoint_epoch_30.pth --config /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_voxel_res3d_centerpoint_custom/default/cbgs_voxel_res3d_centerpoint_custom.yaml --id cp_0.06 --batch-size 32
-# post-processing.sh --ckpt /home/cv08f23/pre-trained-models/cbgs_voxel0075_centerpoint_nds_6648_epoch_20.pth \
-#                    --config /home/cv08f23/point-cloud-object-tracking/OpenPCDet/tools/cfgs/nuscenes_models/cbgs_voxel0075_res3d_centerpoint.yaml \
-#                    --id cp_0.075 \
+# post-processing.sh --ckpt /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_voxel_res3d_centerpoint_custom/default/ckpt/checkpoint_epoch_11.pth \
+#                    --config /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_voxel_res3d_centerpoint_custom/default/cbgs_voxel_res3d_centerpoint_custom.yaml \
+#                    --id cp_0.06_11 \
 #                    --batch-size 32
 # cd ~/point-cloud-object-tracking/OpenPCDet/tools || exit
 
 # python test.py --cfg_file "./cfgs/kitti_models/pointpillar.yaml" --batch_size 32  --ckpt "/home/cv08f23/pre-trained-models/pointpillars-kitty.pth"
 
-post-processing.sh --ckpt /home/cv08f23/pre-trained-models/pointpillars-multihead-nuscenes_epoch_20.pth \
-                   --config /home/cv08f23/point-cloud-object-tracking/OpenPCDet/tools/cfgs/nuscenes_models/cbgs_pp_multihead.yaml \
-                   --id pp_m \
+post-processing.sh --ckpt /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_pointpillar/default/ckpt/checkpoint_epoch_12.pth \
+                   --config /home/cv08f23/point-cloud-object-tracking/OpenPCDet/output/nuscenes_models/cbgs_pointpillar/default/cbgs_pointpillar.yaml \
+                   --id pp_0.16_12 \
                    --batch-size 16
